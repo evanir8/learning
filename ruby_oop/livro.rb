@@ -24,3 +24,5 @@ class Livro
 end
 
 arquitetura = Livro.new("Arquitetura de Software", 100, 1999, true)
+
+arquiteura
