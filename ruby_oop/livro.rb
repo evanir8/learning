@@ -1,5 +1,21 @@
 # exercicios de exemplo do curso de ruby oop da alura
 #
+module Contador
+  def << (livro)
+    push (livro)
+    if @maximo_necessario.nil? || @maximo_necessario < size
+      @maximo_necessario = size
+    end
+    self
+  end
+
+  def maximo_necessario
+    @maximo_necessario
+  end
+
+  attr_reader :maximo_necessario
+end
+
 class Livro
   attr_reader :titulo, :ano_lancamento, :preco
   def initialize(titulo, preco, ano_lancamento, possui_reimpressao = false)
@@ -33,9 +49,10 @@ class Livro
 end
 
 class Estoque
-  # attr_reader :livros
+  attr_reader :livros
   def initialize
     @livros = []
+    @livros.extend Contador
   end
 
   def exporta_csv
@@ -54,21 +71,43 @@ class Estoque
     @livros.size
   end
 
-  def adiciona(livro)
+  def << (livro)
     @livros << livro if livro
   end
+
+  def remove(livro)
+    @livros.delete livro
+  end
+
+  def maximo_necessario
+    @livros.maximo_necessario
+  end
+end
+
+
+def @livros.maximo_necessario
+  @maximo_necessario
 end
 
 algoritimos = Livro.new('Algoritimos', 100, 1998, true)
 arquitetura = Livro.new('Arquitetura de Software', 70, 2111, true)
 
 estoque = Estoque.new
-estoque.adiciona algoritimos
-estoque.adiciona arquitetura
-estoque.adiciona Livro.new('Tre Pragmatic Programmer', 100, 1999, true)
-estoque.adiciona Livro.new('Programming Ruby', 100, 2004, true)
+estoque << algoritimos
+puts estoque.maximo_necessario
+estoque << arquitetura
+puts estoque.maximo_necessario
+estoque << Livro.new('Tre Pragmatic Programmer', 100, 1999, true)
+puts estoque.maximo_necessario
+estoque << Livro.new('Programming Ruby', 100, 2004, true)
+puts estoque.maximo_necessario
+
+estoque.remove algoritimos
+puts estoque.maximo_necessario
+
 
 estoque.exporta_csv
+
 puts '----------------------------------------------'
 puts "Estoque Total: #{estoque.total} livro(s)"
 puts '----------------------------------------------'
@@ -77,3 +116,4 @@ baratos = estoque.mais_barato_que(80)
 baratos.each do |livro|
   puts livro.titulo
 end
+
