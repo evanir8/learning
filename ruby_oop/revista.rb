@@ -1,16 +1,15 @@
 require_relative 'estoque'
 require_relative 'produto'
 
-class Revista
+class Revista < Produto
   attr_reader :numero
 
-  include Produto
+  # include Produto
 
-  def initialize(titulo, preco, ano_lancamento, editora, numero)
-    @titulo             = titulo
-    @ano_lancamento     = ano_lancamento
-    @preco              = calcula_preco(preco)
-    @editora            = editora
+  def initialize(titulo, preco, ano_lancamento, possui_reimpressao, numero, editora, possui_sobrecapa = false)
+
+    super(titulo, preco, ano_lancamento, editora)
+    @possui_reimpressao = possui_reimpressao
     @numero             = numero
   end
 

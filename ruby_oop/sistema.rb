@@ -17,11 +17,11 @@ def @livros.maximo_necessario
   @maximo_necessario
 end
 
-algoritmos         = Livro.new("Algoritmos", 100, 1998, true, "editora")
-arquitetura        = Livro.new("Introdução À Arquitetura e Design de Software", 70, 2011, true, "editora")
+algoritmos         = Livro.new("Algoritmos", 100, 1998, true, "editora", false)
+arquitetura        = Livro.new("Introdução À Arquitetura e Design de Software", 70, 2011, true, "editora",false)
 programmer         = Livro.new("The Pragmatic Programmer", 100, 1999, true, "editora")
 ruby               = Livro.new("Programming Ruby", 100, 2004, true, "editora")
-revistona          = Revista.new("Revista de Ruby", 10, 2012, "Revistas", 3)
+revistona          = Revista.new("Revista de Ruby", 10, 2012, true, 3, "Revistas")
 online_arquitetura = Ebook.new("Introdução a Arquitetura e Design de Software", 50, 2012, "editora")
 
 estoque = Estoque.new
