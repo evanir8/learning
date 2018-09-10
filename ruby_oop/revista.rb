@@ -7,7 +7,6 @@ class Revista < Produto
   # include Produto
 
   def initialize(titulo, preco, ano_lancamento, possui_reimpressao, numero, editora, possui_sobrecapa = false)
-
     super(titulo, preco, ano_lancamento, editora)
     @possui_reimpressao = possui_reimpressao
     @numero             = numero
