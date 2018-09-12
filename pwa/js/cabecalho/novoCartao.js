@@ -1,6 +1,5 @@
 (function($, Mural, Cartao, Tags, Busca){
 	"use strict"
-
 	$(".novoCartao").submit(function(event){
 		event.preventDefault()
 		let $campoConteudo = $(".novoCartao-conteudo")
