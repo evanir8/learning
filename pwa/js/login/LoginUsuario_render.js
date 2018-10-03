@@ -85,7 +85,7 @@ const LoginUsuario_render = (function($){
                                     .val()
                                     .trim()
             if(usuarioDigitado){
-                props.usuario = usuarioDigitado
+                props.usuario = usuarioDigitado.toLowerCase()
                 login(props)
             }
         })
