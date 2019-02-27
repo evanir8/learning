@@ -1,0 +1,16 @@
+{
+  "name": "pwa",
+  "version": "1.0.0",
+  "main": "e8-service-worker.js",
+  "dependencies": {
+    "g": "^2.0.1",
+    "http-server": "^0.11.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Evanir de Oliveira Junior",
+  "license": "ISC",
+  "description": ""
+}
