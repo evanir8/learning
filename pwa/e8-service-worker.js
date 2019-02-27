@@ -1,3 +1,5 @@
+let versao = 7
+
 let arquivos = ["/",
                 "css/estilos.css",
                 "css/opcoesDaPagina.css",
@@ -30,18 +32,21 @@ let arquivos = ["/",
                 "bin2.svg",
                 "edit.svg"]
 
-self.addEventListener("install", function() {
-   caches.open("ceep-arquivos").then(cache => {
+self.addEventListener("activate", function() {
+   caches.open("ceep-arquivos-" + versao).then(cache => {
       cache.addAll(arquivos)
+         .then(function(){
+            caches.delete("ceep-arquivos-" + (versao - 1))
+            caches.delete("ceep-arquivos")
+         })
    })
 })
 
 
 self.addEventListener("fetch", function(event){
   let pedido = event.request
-  console.log("Tentou carregar alguma coisa")
   let promiseResposta = caches.match(pedido).then(respostaCache => {
-      let resposta = respostaCache ? respostaCache : fetch(pedido, {mode: 'no-cors'})
+      let resposta = respostaCache ? respostaCache : fetch(pedido)
       return resposta
     })
   event.respondWith(promiseResposta)
