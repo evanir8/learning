@@ -5,9 +5,17 @@ import { RouteReuseStrategy } from '@angular/router';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { IonicRouteStrategy } from '@ionic/angular';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { fromEventPattern } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
-  imports: [IonicModule.forRoot()],
+  imports: [
+    IonicModule.forRoot(),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule
+  ],
   exports: [BrowserModule, IonicModule],
   providers: [
     StatusBar,
