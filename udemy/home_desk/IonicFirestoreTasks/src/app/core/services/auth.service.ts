@@ -1,0 +1,52 @@
+import { Injectable } from '@angular/core';
+import { auth } from 'firebase';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AuthOptions, AuthProvider, User } from './auth.types';
+
+
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthService {
+  constructor(private afAuth: AngularFireAuth) { }
+
+authenticate({ isSignIn, provider, user }: AuthOptions): Promise<auth.UserCredential> {
+  let operation: Promise<auth.UserCredential>;
+
+  if (provider !== AuthProvider.Email) {
+    operation = this.singInWithPopup(provider);
+  } else {
+    operation = isSignIn ? this.signInWithEmail(user) : this.signUpWithEmail(user);
+  }
+  return operation;
+}
+
+  private signInWithEmail({email, password}: User): Promise<auth.UserCredential> {
+    return this.afAuth.auth.signInWithEmailAndPassword(email, password);
+  }
+
+  private signUpWithEmail({email, password, name}: User): Promise<auth.UserCredential> {
+    return this.afAuth.auth
+    .createUserWithEmailAndPassword(email, password)
+    .then(credentials => {
+        return credentials.user
+          .updateProfile({ displayName: name, photoURL: null })
+          .then(() => credentials);
+      }
+      );
+  }
+
+  private singInWithPopup(provider: AuthProvider): Promise<auth.UserCredential> {
+    let signInProvider = null;
+
+    switch (provider) {
+      case AuthProvider.Facebook:
+        signInProvider = new auth.FacebookAuthProvider();
+        break;
+      // case 'google':
+    }
+
+    return this.afAuth.auth.signInWithPopup(signInProvider);
+  }
+}
