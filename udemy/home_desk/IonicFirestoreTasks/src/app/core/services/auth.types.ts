@@ -1,7 +1,7 @@
 export enum AuthProvider {
-Email,
-Facebook
-// Google
+  Email,
+  Facebook
+  // Google
 }
 
 export interface User {
