@@ -9,12 +9,13 @@ import { Task } from '../../models/task.model';
 })
 export class TasksListPage implements OnInit {
   tasks$: Observable<Task[]>;
+
   constructor() {}
 
   ngOnInit(): void {
     this.tasks$ = of([
-      { id: '1', title: 'Aprender Ionic', done: false },
-      { id: '2', title: 'Aprender FireStore', done: false }
+      { id: 'vcv7df7g', title: 'Aprender Ionic', done: false },
+      { id: 'vdr8df8g', title: 'Aprender FireStore', done: false }
     ]);
   }
 }
