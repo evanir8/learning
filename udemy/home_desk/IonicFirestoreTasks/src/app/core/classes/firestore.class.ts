@@ -1,7 +1,7 @@
 import { AngularFirestore, AngularFirestoreCollection, QueryFn } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
-export abstract class Firestore {
+export abstract class Firestore<T> {
   protected collection: AngularFirestoreCollection<T>;
 
   constructor(protected db: AngularFirestore) {}
@@ -19,6 +19,10 @@ export abstract class Firestore {
 
   getAll(): Observable<T[]> {
     return this.collection.valueChanges();
+  }
+
+  get(id: string): Observable<T> {
+    return this.collection.doc<T>(id).valueChanges();
   }
 
   create(item: T): Promise<T> {
