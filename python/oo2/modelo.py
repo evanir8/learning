@@ -1,57 +1,37 @@
-class Filme:
-  def __init__(self, nome, ano, duracao):
-      self.__nome = nome.title()
+class Programa:
+  def __init__(self, nome, ano):
+      self._nome = nome.title()
       self.ano = ano
-      self.duracao = duracao
-      self.__likes = 0
+      self._likes = 0
 
   @property
   def likes(self):
-    return self.__likes
+    return self._likes
 
   @property
   def nome(self):
-    return self.__nome
+    return self._nome
 
   @nome.setter
   def nome(self, novo_nome):
     self.nome = novo_nome
-
-  @likes.setter
-  def likes(self, novo_valor):
-    self.likes = novo_valor
-
-
-class Serie:
-  def __init__(self, nome, ano, temporadas):
-    self.__nome = nome.title()
-    self.ano = ano
-    self.temporadas = temporadas
-    self.__likes = 0
 
   def dar_like(self):
-    self.__likes += 1
+    self._likes += 1
 
   def unlike(self):
-    self.__likes -= 1
+    self._likes -= 1
 
-  @property
-  def likes(self):
-    return self.__likes
+class Filme(Programa):
+  def __init__(self, nome, ano, duracao):
+    super().__init__(nome, ano)
+    self.duracao = duracao
+    self._likes = 0
 
-  @property
-  def nome(self):
-    return self.__nome
-
-  @nome.setter
-  def nome(self, novo_nome):
-    self.nome = novo_nome
-
-  @likes.setter
-  def likes(self, novo_valor):
-    self.likes = novo_valor
-
-
+class Serie(Programa):
+  def __init__(self, nome, ano, temporadas):
+    super().__init__(nome, ano)
+    self.temporadas = temporadas
 
 vingadores = Filme('Vingadores - Gerra Infinita', 2018, 160)
 
