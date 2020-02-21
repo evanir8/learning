@@ -6,15 +6,13 @@ class CalculadorDeImpostos
 
   def realiza_calculo(orcamento, imposto)
     imposto_calculado = imposto.calcula(orcamento)
-    imposto_calculado
+     puts imposto_calculado
   end
 end
 
 require 'orcamento.rb'
 calculador = CalculadorDeImpostos.new
 orcamento = Orcamento.new(500)
-puts calculador
-puts orcamento
-# calculador.realiza_calculo(orcamento, ISS())
-# calculador.realiza_calculo(orcamento, ICMS())
-puts 'Testando'
+calculador.realiza_calculo(orcamento, ISS.new)
+calculador.realiza_calculo(orcamento, ICMS.new)
+
