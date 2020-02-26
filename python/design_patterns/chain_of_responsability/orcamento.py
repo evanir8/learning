@@ -10,7 +10,7 @@ class Orcamento(object):
     return total
 
   def obter_items(self):
-    return tuple(self.items)
+    return tuple(self.__items)
 
   @property
   def total_items(self):

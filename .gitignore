@@ -1,2 +1,4 @@
 /pwa/img/caelum-logo-256.png
-/python/__pycache__/
+__pycache__
+*.pyc
+*.pyo
