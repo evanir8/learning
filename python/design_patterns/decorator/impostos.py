@@ -63,8 +63,20 @@ class IKCV(Template_de_imposto_condicional):
                 return True
         return False
 
+#recurso de decorator da linguagem python
+# wrapper -> empacotador
+# o decorator do Python, exemplo IPVX, sempre vai ser executado
+# ao contrario do Decorator implementado, ele pode ser composto conforme a necessidade
+def IPVX(metodo_ou_funcao):
+    def wrapper(self, orcamento):
+        print("Executando o decorator IPVX")
+        return metodo_ou_funcao(self, orcamento) + 51
+    return wrapper
+
 class ISS(Imposto):
+    @IPVX
     def calcula(self, orcamento):
+        print("EXECUTANDO o METODO Calcula do ISS")
         return orcamento.valor * 0.1 + self.calculo_outro_imposto(orcamento)
 
 
