@@ -1,6 +1,25 @@
-class TemplateDeImpostoCondicional
+class Imposto
+
+  def initialize(outro_imposto = nil)
+    @outro_imposto = outro_imposto
+  end
+
+  def calculo_outro_imposto(orcamento)
+    return 0 unless @outro_imposto
+
+    @outro_imposto.calcula(orcamento)
+  end
+
   def calcula(orcamento)
-    deve_usar_maxima_taxacao(orcamento) ? maxima_taxacao(orcamento) : minima_taxacao(orcamento)
+    raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
+  end
+end
+
+
+class TemplateDeImpostoCondicional < Imposto
+  def calcula(orcamento)
+    (deve_usar_maxima_taxacao(orcamento) ? maxima_taxacao(orcamento) : minima_taxacao(orcamento) ) + calculo_outro_imposto(orcamento)
+
   end
 
   def deve_usar_maxima_taxacao(_orcamento)
@@ -53,16 +72,14 @@ class IKCV < TemplateDeImpostoCondicional
   end
 end
 
-class ISS
+class ISS < Imposto
   def calcula(orcamento)
-    puts orcamento
-    puts orcamento.valor
-    orcamento.valor * 0.1
+    orcamento.valor * 0.1  + calculo_outro_imposto(orcamento)
   end
 end
 
-class ICMS
+class ICMS < Imposto
   def calcula(orcamento)
-    orcamento.valor * 0.06
+    orcamento.valor * 0.06 + calculo_outro_imposto(orcamento)
   end
 end
