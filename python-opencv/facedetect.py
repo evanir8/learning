@@ -4,7 +4,10 @@ import logging as log
 import datetime as dt
 from time import sleep
 
-cascPath = "/usr/local/lib/python3.7/dist-packages/cv2/data/haarcascade_frontalface_default.xml"
+# Linux home
+# cascPath = "/usr/local/lib/python3.7/dist-packages/cv2/data/haarcascade_frontalface_default.xml"
+# MAC
+cascPath = "/usr/local/Cellar/opencv/4.2.0_1/share/opencv4/haarcascades/haarcascade_frontalface_default.xml"
 faceCascade = cv2.CascadeClassifier(cascPath)
 log.basicConfig(filename='webcam.log', level=log.INFO)
 
