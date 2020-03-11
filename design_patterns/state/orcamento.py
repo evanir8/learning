@@ -150,7 +150,7 @@ if __name__ == '__main__':
     # orcamento.reprova()
     # orcamento.aplica_desconto_extra()
 
-    # orcamento.aprova()
+    orcamento.aprova()
     orcamento.aplica_desconto_extra()
     orcamento.aplica_desconto_extra()
     print(orcamento.valor)
